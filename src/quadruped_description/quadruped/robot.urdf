@@ -1,0 +1,956 @@
+<?xml version="1.0" ?>
+<!-- Generated using onshape-to-robot -->
+<!-- Onshape document_id: c7dfd25072aed8b497ee384b -->
+<robot name="quadruped_robot">
+  <!-- Link body -->
+  <link name="body">
+    <inertial>
+      <origin xyz="3.75372e-17 2.6142e-17 0.0143384" rpy="0 0 0"/>
+      <mass value="0.0808736"/>
+      <inertia ixx="7.37408e-05" ixy="-1.15196e-19" ixz="-3.17637e-22" iyy="7.37408e-05" iyz="-1.85288e-22" izz="0.000135878"/>
+    </inertial>
+    <!-- Part body -->
+    <visual>
+      <origin xyz="5.55116e-18 -2.43737e-18 0.0286" rpy="3.14159 -0 -0.471239"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/body.stl"/>
+      </geometry>
+      <material name="body_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="5.55116e-18 -2.43737e-18 0.0286" rpy="3.14159 -0 -0.471239"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/body.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part body_2 -->
+    <visual>
+      <origin xyz="1.94948e-18 -5.97627e-19 0" rpy="0 -0 -0.471239"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/body.stl"/>
+      </geometry>
+      <material name="body_2_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="1.94948e-18 -5.97627e-19 0" rpy="0 -0 -0.471239"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/body.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part horn -->
+    <visual>
+      <origin xyz="-0.0220185 -0.0432138 0.0143" rpy="-4.93038e-31 5.88325e-29 1.49355"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+      <material name="horn_material">
+        <color rgba="0.917647 0.917647 0.917647 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.0220185 -0.0432138 0.0143" rpy="-4.93038e-31 5.88325e-29 1.49355"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part motor -->
+    <visual>
+      <origin xyz="-0.0220185 -0.0432138 0.0143" rpy="0 -0 2.67035"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+      <material name="motor_material">
+        <color rgba="0.470588 0.470588 0.470588 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.0220185 -0.0432138 0.0143" rpy="0 -0 2.67035"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part horn_2 -->
+    <visual>
+      <origin xyz="0.0432138 -0.0220185 0.0143" rpy="-1.20522e-16 -1.60812e-16 1.45228"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+      <material name="horn_2_material">
+        <color rgba="0.917647 0.917647 0.917647 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.0432138 -0.0220185 0.0143" rpy="-1.20522e-16 -1.60812e-16 1.45228"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part motor_2 -->
+    <visual>
+      <origin xyz="0.0432138 -0.0220185 0.0143" rpy="0 -0 -2.04204"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+      <material name="motor_2_material">
+        <color rgba="0.470588 0.470588 0.470588 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.0432138 -0.0220185 0.0143" rpy="0 -0 -2.04204"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part horn_3 -->
+    <visual>
+      <origin xyz="0.0220185 0.0432138 0.0143" rpy="0 -0 1.49355"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+      <material name="horn_3_material">
+        <color rgba="0.917647 0.917647 0.917647 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.0220185 0.0432138 0.0143" rpy="0 -0 1.49355"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part motor_3 -->
+    <visual>
+      <origin xyz="0.0220185 0.0432138 0.0143" rpy="0 -0 -0.471239"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+      <material name="motor_3_material">
+        <color rgba="0.470588 0.470588 0.470588 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.0220185 0.0432138 0.0143" rpy="0 -0 -0.471239"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part horn_4 -->
+    <visual>
+      <origin xyz="-0.0432138 0.0220185 0.0143" rpy="1.40895e-15 3.03792e-16 1.49355"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+      <material name="horn_4_material">
+        <color rgba="0.917647 0.917647 0.917647 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.0432138 0.0220185 0.0143" rpy="1.40895e-15 3.03792e-16 1.49355"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part motor_4 -->
+    <visual>
+      <origin xyz="-0.0432138 0.0220185 0.0143" rpy="1.45547e-17 3.61151e-16 1.09956"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+      <material name="motor_4_material">
+        <color rgba="0.470588 0.470588 0.470588 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.0432138 0.0220185 0.0143" rpy="1.45547e-17 3.61151e-16 1.09956"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Link doubleu -->
+  <link name="doubleu">
+    <inertial>
+      <origin xyz="5.0275e-18 0.0203 0.015" rpy="0 0 0"/>
+      <mass value="0.00830698"/>
+      <inertia ixx="2.78361e-06" ixy="-2.67021e-22" ixz="2.64394e-22" iyy="1.9255e-06" iyz="-6.15824e-23" izz="2.78361e-06"/>
+    </inertial>
+    <!-- Part u -->
+    <visual>
+      <origin xyz="5.42101e-19 0.018 0.015" rpy="-1.5708 -9.86076e-32 -9.97056e-31"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/u.stl"/>
+      </geometry>
+      <material name="u_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="5.42101e-19 0.018 0.015" rpy="-1.5708 -9.86076e-32 -9.97056e-31"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/u.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part u_2 -->
+    <visual>
+      <origin xyz="4.01155e-18 0.0226 0.015" rpy="1.5708 1.5708 0"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/u.stl"/>
+      </geometry>
+      <material name="u_2_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="4.01155e-18 0.0226 0.015" rpy="1.5708 1.5708 0"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/u.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Link platesblock -->
+  <link name="platesblock">
+    <inertial>
+      <origin xyz="-0.020946 -0.0235269 0.0150372" rpy="0 0 0"/>
+      <mass value="0.0417755"/>
+      <inertia ixx="1.86838e-05" ixy="-1.25173e-05" ixz="1.45769e-19" iyy="1.57682e-05" iyz="1.69433e-19" izz="2.99828e-05"/>
+    </inertial>
+    <!-- Part plate -->
+    <visual>
+      <origin xyz="0.0146702 -0.00502748 0.015" rpy="1.5708 -1.22522e-14 -2.29822"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/plate.stl"/>
+      </geometry>
+      <material name="plate_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.0146702 -0.00502748 0.015" rpy="1.5708 -1.22522e-14 -2.29822"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/plate.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part plate_2 -->
+    <visual>
+      <origin xyz="-0.00497294 0.0124607 0.015" rpy="1.5708 -1.15e-15 -2.29822"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/plate.stl"/>
+      </geometry>
+      <material name="plate_2_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.00497294 0.0124607 0.015" rpy="1.5708 -1.15e-15 -2.29822"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/plate.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part horn_5 -->
+    <visual>
+      <origin xyz="0 0 0.015" rpy="-1.66754e-29 -0 0"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+      <material name="horn_5_material">
+        <color rgba="0.917647 0.917647 0.917647 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.015" rpy="-1.66754e-29 -0 0"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part motor_5 -->
+    <visual>
+      <origin xyz="8.67362e-18 4.16334e-17 0.015" rpy="4.59819e-16 -9.52795e-17 -0.727428"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+      <material name="motor_5_material">
+        <color rgba="0.470588 0.470588 0.470588 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="8.67362e-18 4.16334e-17 0.015" rpy="4.59819e-16 -9.52795e-17 -0.727428"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part horn_6 -->
+    <visual>
+      <origin xyz="-0.0418919 -0.0470539 0.015" rpy="-8.07265e-16 -3.58377e-16 -2.55772"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+      <material name="horn_6_material">
+        <color rgba="0.917647 0.917647 0.917647 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.0418919 -0.0470539 0.015" rpy="-8.07265e-16 -3.58377e-16 -2.55772"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part motor_6 -->
+    <visual>
+      <origin xyz="-0.0418919 -0.0470539 0.015" rpy="1.22522e-14 -6.26365e-16 2.41416"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+      <material name="motor_6_material">
+        <color rgba="0.470588 0.470588 0.470588 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.0418919 -0.0470539 0.015" rpy="1.22522e-14 -6.26365e-16 2.41416"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Link leg -->
+  <link name="leg">
+    <inertial>
+      <origin xyz="-1.82488e-17 0.0533786 0.015" rpy="0 0 0"/>
+      <mass value="0.0154162"/>
+      <inertia ixx="2.13816e-05" ixy="8.73376e-39" ixz="1.61963e-21" iyy="3.58407e-06" iyz="1.56187e-22" izz="1.88204e-05"/>
+    </inertial>
+    <!-- Part leg -->
+    <visual>
+      <origin xyz="0 6.93889e-18 0.015" rpy="1.5708 -7.94916e-18 0"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/leg.stl"/>
+      </geometry>
+      <material name="leg_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 6.93889e-18 0.015" rpy="1.5708 -7.94916e-18 0"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/leg.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Joint from platesblock to leg -->
+  <joint name="leg1_c" type="revolute">
+    <origin xyz="-0.0418919 -0.0470539 -1.73472e-17" rpy="-7.25209e-16 9.07419e-16 -1.70999"/>
+    <parent link="platesblock"/>
+    <child link="leg"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-3.141592653589793" upper="3.141592653589793"/>
+  </joint>
+  <!-- Joint from doubleu to platesblock -->
+  <joint name="leg1_b" type="revolute">
+    <origin xyz="0.015 0.0406 0.015" rpy="3.14159 1.5708 0"/>
+    <parent link="doubleu"/>
+    <child link="platesblock"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-3.141592653589793" upper="3.141592653589793"/>
+  </joint>
+  <!-- Joint from body to doubleu -->
+  <joint name="leg1_a" type="revolute">
+    <origin xyz="-0.0432138 0.0220185 -0.0007" rpy="1.35916e-15 8.76826e-16 1.11854"/>
+    <parent link="body"/>
+    <child link="doubleu"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-3.141592653589793" upper="3.141592653589793"/>
+  </joint>
+  <!-- Link doubleu_2 -->
+  <link name="doubleu_2">
+    <inertial>
+      <origin xyz="-3.2395e-17 -0.0203 -0.015" rpy="0 0 0"/>
+      <mass value="0.00830698"/>
+      <inertia ixx="2.78361e-06" ixy="-3.02077e-21" ixz="-2.69222e-22" iyy="1.9255e-06" iyz="5.45198e-21" izz="2.78361e-06"/>
+    </inertial>
+    <!-- Part u_3 -->
+    <visual>
+      <origin xyz="-6.96058e-17 -0.0226 -0.015" rpy="-1.5708 -1.5708 0"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/u.stl"/>
+      </geometry>
+      <material name="u_3_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-6.96058e-17 -0.0226 -0.015" rpy="-1.5708 -1.5708 0"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/u.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part u_4 -->
+    <visual>
+      <origin xyz="-2.1684e-19 -0.018 -0.015" rpy="1.5708 1.97215e-31 -5.55112e-17"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/u.stl"/>
+      </geometry>
+      <material name="u_4_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-2.1684e-19 -0.018 -0.015" rpy="1.5708 1.97215e-31 -5.55112e-17"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/u.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Link platesblock_2 -->
+  <link name="platesblock_2">
+    <inertial>
+      <origin xyz="-0.0237862 0.0206511 0.0150372" rpy="0 0 0"/>
+      <mass value="0.0417755"/>
+      <inertia ixx="1.54566e-05" ixy="1.24771e-05" ixz="8.09975e-21" iyy="1.89954e-05" iyz="-1.83965e-20" izz="2.99828e-05"/>
+    </inertial>
+    <!-- Part plate_3 -->
+    <visual>
+      <origin xyz="-0.00484423 -0.0147317 0.015" rpy="1.5708 -1.30297e-15 2.42663"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/plate.stl"/>
+      </geometry>
+      <material name="plate_3_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.00484423 -0.0147317 0.015" rpy="1.5708 -1.30297e-15 2.42663"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/plate.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part plate_4 -->
+    <visual>
+      <origin xyz="0.0123978 0.00512787 0.015" rpy="1.5708 -8.58876e-16 2.42663"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/plate.stl"/>
+      </geometry>
+      <material name="plate_4_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.0123978 0.00512787 0.015" rpy="1.5708 -8.58876e-16 2.42663"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/plate.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part horn_7 -->
+    <visual>
+      <origin xyz="1.38778e-17 1.73472e-18 0.015" rpy="3.9443e-31 5.3547e-30 3.9443e-31"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+      <material name="horn_7_material">
+        <color rgba="0.917647 0.917647 0.917647 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="1.38778e-17 1.73472e-18 0.015" rpy="3.9443e-31 5.3547e-30 3.9443e-31"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part motor_7 -->
+    <visual>
+      <origin xyz="2.77556e-17 6.93889e-18 0.015" rpy="-1.30297e-15 -1.30849e-15 -2.28576"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+      <material name="motor_7_material">
+        <color rgba="0.470588 0.470588 0.470588 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="2.77556e-17 6.93889e-18 0.015" rpy="-1.30297e-15 -1.30849e-15 -2.28576"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part horn_8 -->
+    <visual>
+      <origin xyz="-0.0475724 0.0413021 0.015" rpy="1.11541e-15 8.89095e-15 1.87535"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+      <material name="horn_8_material">
+        <color rgba="0.917647 0.917647 0.917647 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.0475724 0.0413021 0.015" rpy="1.11541e-15 8.89095e-15 1.87535"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part motor_8 -->
+    <visual>
+      <origin xyz="-0.0475724 0.0413021 0.015" rpy="1.19194e-15 1.08645e-15 0.855833"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+      <material name="motor_8_material">
+        <color rgba="0.470588 0.470588 0.470588 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.0475724 0.0413021 0.015" rpy="1.19194e-15 1.08645e-15 0.855833"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Link leg_2 -->
+  <link name="leg_2">
+    <inertial>
+      <origin xyz="-4.60044e-17 0.0533786 0.015" rpy="0 0 0"/>
+      <mass value="0.0154162"/>
+      <inertia ixx="2.13816e-05" ixy="1.11126e-38" ixz="1.63754e-21" iyy="3.58407e-06" iyz="2.78132e-22" izz="1.88204e-05"/>
+    </inertial>
+    <!-- Part leg_2 -->
+    <visual>
+      <origin xyz="-2.77556e-17 -3.46945e-18 0.015" rpy="1.5708 -3.16249e-17 0"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/leg.stl"/>
+      </geometry>
+      <material name="leg_2_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-2.77556e-17 -3.46945e-18 0.015" rpy="1.5708 -3.16249e-17 0"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/leg.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Joint from platesblock_2 to leg_2 -->
+  <joint name="leg2_c" type="revolute">
+    <origin xyz="-0.0475724 0.0413021 3.46945e-18" rpy="4.37895e-16 2.72154e-15 2.86982"/>
+    <parent link="platesblock_2"/>
+    <child link="leg_2"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-3.141592653589793" upper="3.141592653589793"/>
+  </joint>
+  <!-- Joint from doubleu_2 to platesblock_2 -->
+  <joint name="leg2_b" type="revolute">
+    <origin xyz="0.015 -0.0406 -0.015" rpy="-1.5708 -5.47176e-15 1.5708"/>
+    <parent link="doubleu_2"/>
+    <child link="platesblock_2"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-3.141592653589793" upper="3.141592653589793"/>
+  </joint>
+  <!-- Joint from body to doubleu_2 -->
+  <joint name="leg2_a" type="revolute">
+    <origin xyz="-0.0220185 -0.0432138 -0.0007" rpy="3.14159 1.15835e-15 2.65081"/>
+    <parent link="body"/>
+    <child link="doubleu_2"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-3.141592653589793" upper="3.141592653589793"/>
+  </joint>
+  <!-- Link doubleu_3 -->
+  <link name="doubleu_3">
+    <inertial>
+      <origin xyz="4.05666e-17 -0.0203 0.015" rpy="0 0 0"/>
+      <mass value="0.00830698"/>
+      <inertia ixx="2.78361e-06" ixy="2.28413e-21" ixz="5.95365e-22" iyy="1.9255e-06" iyz="-2.00735e-21" izz="2.78361e-06"/>
+    </inertial>
+    <!-- Part u_5 -->
+    <visual>
+      <origin xyz="6.8901e-17 -0.0226 0.015" rpy="-1.5708 -1.5708 0"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/u.stl"/>
+      </geometry>
+      <material name="u_5_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="6.8901e-17 -0.0226 0.015" rpy="-1.5708 -1.5708 0"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/u.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part u_6 -->
+    <visual>
+      <origin xyz="2.98156e-18 -0.018 0.015" rpy="1.5708 -3.9443e-31 1.83713e-31"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/u.stl"/>
+      </geometry>
+      <material name="u_6_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="2.98156e-18 -0.018 0.015" rpy="1.5708 -3.9443e-31 1.83713e-31"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/u.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Link platesblock_3 -->
+  <link name="platesblock_3">
+    <inertial>
+      <origin xyz="-0.024422 0.0198951 0.0150372" rpy="0 0 0"/>
+      <mass value="0.0417755"/>
+      <inertia ixx="1.46781e-05" ixy="1.23416e-05" ixz="3.00167e-20" iyy="1.97739e-05" iyz="-2.21817e-20" izz="2.99828e-05"/>
+    </inertial>
+    <!-- Part plate_5 -->
+    <visual>
+      <origin xyz="-0.00437994 -0.0148764 0.015" rpy="1.5708 4.96871e-16 2.45799"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/plate.stl"/>
+      </geometry>
+      <material name="plate_5_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.00437994 -0.0148764 0.015" rpy="1.5708 4.96871e-16 2.45799"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/plate.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part plate_6 -->
+    <visual>
+      <origin xyz="0.0122309 0.00551408 0.015" rpy="1.5708 -7.24375e-16 2.45799"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/plate.stl"/>
+      </geometry>
+      <material name="plate_6_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.0122309 0.00551408 0.015" rpy="1.5708 -7.24375e-16 2.45799"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/plate.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part horn_9 -->
+    <visual>
+      <origin xyz="1.38778e-17 0 0.015" rpy="0 -5.55112e-17 3.9443e-31"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+      <material name="horn_9_material">
+        <color rgba="0.917647 0.917647 0.917647 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="1.38778e-17 0 0.015" rpy="0 -5.55112e-17 3.9443e-31"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part motor_9 -->
+    <visual>
+      <origin xyz="8.32667e-17 3.64292e-17 0.015" rpy="-7.24375e-16 -3.41573e-15 -2.2544"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+      <material name="motor_9_material">
+        <color rgba="0.470588 0.470588 0.470588 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="8.32667e-17 3.64292e-17 0.015" rpy="-7.24375e-16 -3.41573e-15 -2.2544"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part horn_10 -->
+    <visual>
+      <origin xyz="-0.048844 0.0397902 0.015" rpy="-2.79085e-16 -6.74502e-16 3.06435"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+      <material name="horn_10_material">
+        <color rgba="0.917647 0.917647 0.917647 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.048844 0.0397902 0.015" rpy="-2.79085e-16 -6.74502e-16 3.06435"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part motor_10 -->
+    <visual>
+      <origin xyz="-0.048844 0.0397902 0.015" rpy="-5.93696e-15 3.52676e-15 0.887193"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+      <material name="motor_10_material">
+        <color rgba="0.470588 0.470588 0.470588 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.048844 0.0397902 0.015" rpy="-5.93696e-15 3.52676e-15 0.887193"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Link leg_3 -->
+  <link name="leg_3">
+    <inertial>
+      <origin xyz="-5.19306e-17 0.0533786 0.015" rpy="0 0 0"/>
+      <mass value="0.0154162"/>
+      <inertia ixx="2.13816e-05" ixy="-1.58483e-21" ixz="-9.94592e-22" iyy="3.58407e-06" iyz="-1.12148e-22" izz="1.88204e-05"/>
+    </inertial>
+    <!-- Part leg_3 -->
+    <visual>
+      <origin xyz="-2.77556e-17 3.03577e-18 0.015" rpy="1.5708 3.942e-18 -5.55112e-17"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/leg.stl"/>
+      </geometry>
+      <material name="leg_3_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-2.77556e-17 3.03577e-18 0.015" rpy="1.5708 3.942e-18 -5.55112e-17"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/leg.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Frame leg_tip (dummy link + fixed joint) -->
+  <link name="leg_tip">
+    <origin xyz="0 0 0" rpy="0 -0 0"/>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1e-9"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+  </link>
+  <joint name="leg_tip_frame" type="fixed">
+    <origin xyz="-0.021279 0.0925079 0.0945581" rpy="1.39244 0.46388 3.11155"/>
+    <parent link="leg_3"/>
+    <child link="leg_tip"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <!-- Joint from platesblock_3 to leg_3 -->
+  <joint name="leg3_c" type="revolute">
+    <origin xyz="-0.048844 0.0397902 8.67362e-18" rpy="-4.25949e-16 5.44252e-16 2.78862"/>
+    <parent link="platesblock_3"/>
+    <child link="leg_3"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-3.141592653589793" upper="3.141592653589793"/>
+  </joint>
+  <!-- Joint from doubleu_3 to platesblock_3 -->
+  <joint name="leg3_b" type="revolute">
+    <origin xyz="-0.015 -0.0406 0.015" rpy="1.5708 6.55223e-15 1.5708"/>
+    <parent link="doubleu_3"/>
+    <child link="platesblock_3"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-3.141592653589793" upper="3.141592653589793"/>
+  </joint>
+  <!-- Joint from body to doubleu_3 -->
+  <joint name="leg3_a" type="revolute">
+    <origin xyz="0.0432138 -0.0220185 -0.0007" rpy="3.27213e-15 3.13842e-15 1.10469"/>
+    <parent link="body"/>
+    <child link="doubleu_3"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-3.141592653589793" upper="3.141592653589793"/>
+  </joint>
+  <!-- Link doubleu_4 -->
+  <link name="doubleu_4">
+    <inertial>
+      <origin xyz="-5.69225e-17 -0.0203 0.015" rpy="0 0 0"/>
+      <mass value="0.00830698"/>
+      <inertia ixx="2.78361e-06" ixy="-5.55755e-21" ixz="-1.74197e-22" iyy="1.9255e-06" iyz="-1.85023e-20" izz="2.78361e-06"/>
+    </inertial>
+    <!-- Part u_7 -->
+    <visual>
+      <origin xyz="-1.26201e-16 -0.0226 0.015" rpy="-1.5708 -1.5708 0"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/u.stl"/>
+      </geometry>
+      <material name="u_7_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-1.26201e-16 -0.0226 0.015" rpy="-1.5708 -1.5708 0"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/u.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part u_8 -->
+    <visual>
+      <origin xyz="2.1684e-18 -0.018 0.015" rpy="1.5708 9.06311e-31 0"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/u.stl"/>
+      </geometry>
+      <material name="u_8_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="2.1684e-18 -0.018 0.015" rpy="1.5708 9.06311e-31 0"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/u.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Link platesblock_4 -->
+  <link name="platesblock_4">
+    <inertial>
+      <origin xyz="-0.0237376 0.0207069 0.0135372" rpy="0 0 0"/>
+      <mass value="0.0417755"/>
+      <inertia ixx="1.55153e-05" ixy="1.24852e-05" ixz="7.18655e-20" iyy="1.89367e-05" iyz="-6.47716e-20" izz="2.99828e-05"/>
+    </inertial>
+    <!-- Part plate_7 -->
+    <visual>
+      <origin xyz="-0.00487882 -0.0147203 0.0135" rpy="1.5708 -3.37391e-15 2.42428"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/plate.stl"/>
+      </geometry>
+      <material name="plate_7_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.00487882 -0.0147203 0.0135" rpy="1.5708 -3.37391e-15 2.42428"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/plate.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part plate_8 -->
+    <visual>
+      <origin xyz="0.0124098 0.00509873 0.0135" rpy="1.5708 -6.87112e-15 2.42428"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/plate.stl"/>
+      </geometry>
+      <material name="plate_8_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.0124098 0.00509873 0.0135" rpy="1.5708 -6.87112e-15 2.42428"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/plate.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part horn_11 -->
+    <visual>
+      <origin xyz="0 0 0.0135" rpy="1.97215e-31 -2.61519e-30 0"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+      <material name="horn_11_material">
+        <color rgba="0.917647 0.917647 0.917647 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.0135" rpy="1.97215e-31 -2.61519e-30 0"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part motor_11 -->
+    <visual>
+      <origin xyz="9.71445e-17 -2.77556e-17 0.0135" rpy="-6.81561e-15 -5.12299e-16 -2.28811"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+      <material name="motor_11_material">
+        <color rgba="0.470588 0.470588 0.470588 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="9.71445e-17 -2.77556e-17 0.0135" rpy="-6.81561e-15 -5.12299e-16 -2.28811"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part horn_12 -->
+    <visual>
+      <origin xyz="-0.0474752 0.0414138 0.0135" rpy="-2.04114e-16 -5.71266e-16 -1.83339"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+      <material name="horn_12_material">
+        <color rgba="0.917647 0.917647 0.917647 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.0474752 0.0414138 0.0135" rpy="-2.04114e-16 -5.71266e-16 -1.83339"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/horn.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part motor_12 -->
+    <visual>
+      <origin xyz="-0.0474752 0.0414138 0.0135" rpy="-6.77767e-17 7.34343e-16 0.853484"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+      <material name="motor_12_material">
+        <color rgba="0.470588 0.470588 0.470588 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.0474752 0.0414138 0.0135" rpy="-6.77767e-17 7.34343e-16 0.853484"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/motor.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Link leg_4 -->
+  <link name="leg_4">
+    <inertial>
+      <origin xyz="-1.82488e-17 -0.0533786 0.015" rpy="0 0 0"/>
+      <mass value="0.0154162"/>
+      <inertia ixx="2.13816e-05" ixy="-5.93459e-22" ixz="2.50122e-21" iyy="3.58407e-06" iyz="2.52028e-22" izz="1.88204e-05"/>
+    </inertial>
+    <!-- Part leg_4 -->
+    <visual>
+      <origin xyz="0 -3.46945e-18 0.015" rpy="-1.5708 -2.41664e-17 -2.77556e-17"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/leg.stl"/>
+      </geometry>
+      <material name="leg_4_material">
+        <color rgba="0.972549 0.529412 0.00392157 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 -3.46945e-18 0.015" rpy="-1.5708 -2.41664e-17 -2.77556e-17"/>
+      <geometry>
+        <mesh filename="package://quadruped_description/quadruped/assets/leg.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Joint from platesblock_4 to leg_4 -->
+  <joint name="leg4_c" type="revolute">
+    <origin xyz="-0.0474752 0.0414138 -0.0015" rpy="-3.48409e-16 1.31128e-15 -0.257069"/>
+    <parent link="platesblock_4"/>
+    <child link="leg_4"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-3.141592653589793" upper="3.141592653589793"/>
+  </joint>
+  <!-- Joint from doubleu_4 to platesblock_4 -->
+  <joint name="leg4_b" type="revolute">
+    <origin xyz="-0.015 -0.0406 0.015" rpy="1.5708 2.34093e-14 1.5708"/>
+    <parent link="doubleu_4"/>
+    <child link="platesblock_4"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-3.141592653589793" upper="3.141592653589793"/>
+  </joint>
+  <!-- Joint from body to doubleu_4 -->
+  <joint name="leg4_a" type="revolute">
+    <origin xyz="0.0220185 0.0432138 -0.0007" rpy="2.79776e-14 2.67541e-28 2.7068"/>
+    <parent link="body"/>
+    <child link="doubleu_4"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-3.141592653589793" upper="3.141592653589793"/>
+  </joint>
+</robot>

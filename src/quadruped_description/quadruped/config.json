@@ -1,0 +1,7 @@
+{
+  "documentId": "c7dfd25072aed8b497ee384b",
+  "outputFormat": "urdf",
+  "assemblyName": "Robot",
+  "robotName": "quadruped_robot",
+  "packageName": "quadruped_description/quadruped"
+}
