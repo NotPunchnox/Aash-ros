@@ -3,14 +3,8 @@
 <!-- Onshape document_id: c7dfd25072aed8b497ee384b -->
 <robot name="quadruped_robot" xmlns:xacro="http://ros.org/wiki/xacro">
   
-  <!-- Dummy root link pour résoudre le warning KDL -->
-  <link name="dummy_root">
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.001"/>
-      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
-    </inertial>
-  </link>
+  <!-- Dummy root link pour résoudre le warning KDL (sans inertie) -->
+  <link name="dummy_root"/>
 
   <joint name="dummy_to_body" type="fixed">
     <parent link="dummy_root"/>
@@ -1048,9 +1042,10 @@
   <!-- Plugin Gazebo pour ros2_control -->
   <gazebo>
     <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
-      <robot_param>robot_description</robot_param>
-      <robot_param_node>robot_state_publisher</robot_param_node>
-      <parameters>$(arg controller_config_file)</parameters>
+      <ros__parameters>
+        <robot_param>robot_description</robot_param>
+        <robot_param_node>robot_state_publisher</robot_param_node>
+      </ros__parameters>
     </plugin>
   </gazebo>
 
