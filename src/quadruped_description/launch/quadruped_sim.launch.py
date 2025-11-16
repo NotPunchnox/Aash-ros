@@ -11,6 +11,8 @@ def generate_launch_description():
     package_description = "quadruped_description"
     urdf_file = 'robot.urdf'
 
+    os.system("killall -9 gzserver gzclient 2>/dev/null; sleep 1; echo \"Gazebo arrêté\"")
+
     # URDF
     robot_desc_path = PathJoinSubstitution([
         get_package_share_directory(package_description), "quadruped", urdf_file

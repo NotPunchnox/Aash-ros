@@ -1,7 +1,8 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, TimerAction
+from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, RegisterEventHandler, TimerAction
+from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, LaunchConfiguration
 from launch_ros.actions import Node
@@ -20,6 +21,8 @@ def generate_launch_description():
     # Chemins
     pkg_share = get_package_share_directory(package_description)
     urdf_file = os.path.join(pkg_share, "quadruped", "robot.urdf")
+    config_file = os.path.join(pkg_share, "config", "quadruped_control.yaml")
+    rviz_config_file = os.path.join(pkg_share, "rviz", "display.rviz")
     
     # Gazebo
     gazebo = IncludeLaunchDescription(
@@ -32,9 +35,9 @@ def generate_launch_description():
         }.items()
     )
     
-    # Robot description
+    # Robot description avec passage du fichier de config
     robot_desc_content = ParameterValue(
-        Command(['xacro ', urdf_file]),
+        Command(['xacro ', urdf_file, ' controller_config_file:=', config_file]),
         value_type=str
     )
     
@@ -51,39 +54,37 @@ def generate_launch_description():
     )
     
     # Spawn robot in Gazebo
-    spawn_entity = TimerAction(
-        period=3.0,
-        actions=[
-            Node(
-                package='gazebo_ros',
-                executable='spawn_entity.py',
-                arguments=[
-                    '-topic', 'robot_description',
-                    '-entity', 'quadruped_robot',
-                    '-x', '0.0',
-                    '-y', '0.0',
-                    '-z', '0.5'
-                ],
-                output='screen'
-            )
-        ]
+    spawn_entity = Node(
+        package='gazebo_ros',
+        executable='spawn_entity.py',
+        arguments=[
+            '-topic', 'robot_description',
+            '-entity', 'quadruped',
+            '-x', '0.0',
+            '-y', '0.0',
+            '-z', '0.5'
+        ],
+        output='screen'
     )
     
-    # Charger les contrôleurs
-    load_joint_state_broadcaster = TimerAction(
-        period=5.0,
-        actions=[
-            Node(
-                package='controller_manager',
-                executable='spawner',
-                arguments=['joint_state_broadcaster'],
-                output='screen'
-            )
-        ]
+    # Charger joint_state_broadcaster après spawn
+    load_joint_state_broadcaster = RegisterEventHandler(
+        event_handler=OnProcessExit(
+            target_action=spawn_entity,
+            on_exit=[
+                Node(
+                    package='controller_manager',
+                    executable='spawner',
+                    arguments=['joint_state_broadcaster'],
+                    output='screen'
+                )
+            ]
+        )
     )
     
+    # Charger quadruped_controller avec un délai
     load_quadruped_controller = TimerAction(
-        period=7.0,
+        period=8.0,
         actions=[
             Node(
                 package='controller_manager',
@@ -94,6 +95,16 @@ def generate_launch_description():
         ]
     )
     
+    # RViz (commenté pour le moment à cause des problèmes d'affichage)
+    # rviz = Node(
+    #     package='rviz2',
+    #     executable='rviz2',
+    #     name='rviz2',
+    #     arguments=['-d', rviz_config_file],
+    #     parameters=[{'use_sim_time': True}],
+    #     output='screen'
+    # )
+    
     return LaunchDescription([
         gui_arg,
         gazebo,
@@ -101,4 +112,5 @@ def generate_launch_description():
         spawn_entity,
         load_joint_state_broadcaster,
         load_quadruped_controller,
+        # rviz,
     ])
