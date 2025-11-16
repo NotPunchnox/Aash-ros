@@ -1,116 +1,82 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, RegisterEventHandler, TimerAction
-from launch.event_handlers import OnProcessExit
+from launch.actions import IncludeLaunchDescription, ExecuteProcess, RegisterEventHandler
+from launch.event_handlers import OnProcessStart
+from launch.substitutions import Command, PathJoinSubstitution
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import Command, LaunchConfiguration
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
 
 def generate_launch_description():
     package_description = "quadruped_description"
-    
-    # Arguments
-    gui_arg = DeclareLaunchArgument(
-        'gui',
-        default_value='true',
-        description='Démarrer Gazebo avec GUI (false pour mode headless)'
-    )
-    
-    # Chemins
-    pkg_share = get_package_share_directory(package_description)
-    urdf_file = os.path.join(pkg_share, "quadruped", "robot.urdf")
-    config_file = os.path.join(pkg_share, "config", "quadruped_control.yaml")
-    rviz_config_file = os.path.join(pkg_share, "rviz", "display.rviz")
-    
-    # Gazebo
-    gazebo = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([
-            os.path.join(get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')
-        ]),
-        launch_arguments={
-            'verbose': 'false',
-            'gui': LaunchConfiguration('gui')
-        }.items()
-    )
-    
-    # Robot description avec passage du fichier de config
+    urdf_file = 'robot.urdf'
+
+    # URDF content
+    robot_desc_path = PathJoinSubstitution([
+        get_package_share_directory(package_description), "quadruped", urdf_file
+    ])
     robot_desc_content = ParameterValue(
-        Command(['xacro ', urdf_file, ' controller_config_file:=', config_file]),
+        Command(['xacro ', robot_desc_path]),
         value_type=str
     )
-    
-    # Robot state publisher
-    robot_state_publisher = Node(
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        name='robot_state_publisher',
-        parameters=[{
-            'use_sim_time': True,
-            'robot_description': robot_desc_content
-        }],
-        output='screen'
+
+    # Launch Gazebo with additional args for running and verbose
+    gazebo = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([os.path.join(
+            get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')]),
+        launch_arguments={
+            'extra_gz_args': '-r -v 4',
+            'paused': 'false'
+        }.items()
     )
-    
-    # Spawn robot in Gazebo
+
+    # Spawn the robot entity
     spawn_entity = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
-        arguments=[
-            '-topic', 'robot_description',
-            '-entity', 'quadruped',
-            '-x', '0.0',
-            '-y', '0.0',
-            '-z', '0.5'
-        ],
+        arguments=['-topic', 'robot_description', '-entity', 'quadruped'],
         output='screen'
     )
-    
-    # Charger joint_state_broadcaster après spawn
-    load_joint_state_broadcaster = RegisterEventHandler(
-        event_handler=OnProcessExit(
+
+    # Robot State Publisher
+    robot_state_publisher_node = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        parameters=[{'robot_description': robot_desc_content, 'use_sim_time': True}],
+        output='screen'
+    )
+
+    # Spawners for the controllers with controller-manager-timeout
+    load_joint_state_broadcaster = ExecuteProcess(
+        cmd=['ros2', 'run', 'controller_manager', 'spawner', 'joint_state_broadcaster', '--controller-manager', '/controller_manager', '--controller-manager-timeout', '-1'],
+        output='screen'
+    )
+
+    load_quadruped_controller = ExecuteProcess(
+        cmd=['ros2', 'run', 'controller_manager', 'spawner', 'quadruped_controller', '--controller-manager', '/controller_manager', '--controller-manager-timeout', '-1'],
+        output='screen'
+    )
+
+    # Event handlers to wait for spawn_entity (plugin loads after spawn)
+    delayed_joint_state_broadcaster = RegisterEventHandler(
+        event_handler=OnProcessStart(
             target_action=spawn_entity,
-            on_exit=[
-                Node(
-                    package='controller_manager',
-                    executable='spawner',
-                    arguments=['joint_state_broadcaster'],
-                    output='screen'
-                )
-            ]
+            on_start=[load_joint_state_broadcaster]
         )
     )
-    
-    # Charger quadruped_controller avec un délai
-    load_quadruped_controller = TimerAction(
-        period=8.0,
-        actions=[
-            Node(
-                package='controller_manager',
-                executable='spawner',
-                arguments=['quadruped_controller'],
-                output='screen'
-            )
-        ]
+
+    delayed_quadruped_controller = RegisterEventHandler(
+        event_handler=OnProcessStart(
+            target_action=spawn_entity,
+            on_start=[load_quadruped_controller]
+        )
     )
-    
-    # RViz (commenté pour le moment à cause des problèmes d'affichage)
-    # rviz = Node(
-    #     package='rviz2',
-    #     executable='rviz2',
-    #     name='rviz2',
-    #     arguments=['-d', rviz_config_file],
-    #     parameters=[{'use_sim_time': True}],
-    #     output='screen'
-    # )
-    
+
     return LaunchDescription([
-        gui_arg,
         gazebo,
-        robot_state_publisher,
+        robot_state_publisher_node,
         spawn_entity,
-        load_joint_state_broadcaster,
-        load_quadruped_controller,
-        # rviz,
+        delayed_joint_state_broadcaster,
+        delayed_quadruped_controller
     ])
