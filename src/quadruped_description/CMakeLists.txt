@@ -20,6 +20,7 @@ install(
     rviz
     launch
     quadruped
+    config
   DESTINATION
     share/${PROJECT_NAME}/
 )

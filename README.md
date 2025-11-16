@@ -122,7 +122,7 @@ colcon build --packages-select quadruped_description
 Si vous obtenez l'erreur "Unable to start server[bind: Address already in use]" :
 ```bash
 # Tuer tous les processus Gazebo
-killall -9 gzserver gzclient
+killall -9 gzserver gzclient 2>/dev/null; sleep 1; echo "Gazebo arrêté"
 # Attendre 2 secondes
 sleep 2
 # Relancer

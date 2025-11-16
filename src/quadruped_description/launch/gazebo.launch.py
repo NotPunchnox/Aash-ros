@@ -1,10 +1,9 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, ExecuteProcess, RegisterEventHandler, DeclareLaunchArgument
-from launch.event_handlers import OnProcessExit
+from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, TimerAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import Command, PathJoinSubstitution, LaunchConfiguration
+from launch.substitutions import Command, LaunchConfiguration
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
 
@@ -21,7 +20,6 @@ def generate_launch_description():
     # Chemins
     pkg_share = get_package_share_directory(package_description)
     urdf_file = os.path.join(pkg_share, "quadruped", "robot.urdf")
-    controller_config = os.path.join(pkg_share, "config", "quadruped_control.yaml")
     
     # Gazebo
     gazebo = IncludeLaunchDescription(
@@ -29,7 +27,7 @@ def generate_launch_description():
             os.path.join(get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')
         ]),
         launch_arguments={
-            'verbose': 'true',
+            'verbose': 'false',
             'gui': LaunchConfiguration('gui')
         }.items()
     )
@@ -53,48 +51,54 @@ def generate_launch_description():
     )
     
     # Spawn robot in Gazebo
-    spawn_entity = Node(
-        package='gazebo_ros',
-        executable='spawn_entity.py',
-        arguments=[
-            '-topic', 'robot_description',
-            '-entity', 'quadruped_robot',
-            '-x', '0.0',
-            '-y', '0.0',
-            '-z', '0.5'
-        ],
-        output='screen'
+    spawn_entity = TimerAction(
+        period=3.0,
+        actions=[
+            Node(
+                package='gazebo_ros',
+                executable='spawn_entity.py',
+                arguments=[
+                    '-topic', 'robot_description',
+                    '-entity', 'quadruped_robot',
+                    '-x', '0.0',
+                    '-y', '0.0',
+                    '-z', '0.5'
+                ],
+                output='screen'
+            )
+        ]
     )
     
-    # Controller manager
-    load_joint_state_broadcaster = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
-             'joint_state_broadcaster'],
-        output='screen'
+    # Charger les contrôleurs
+    load_joint_state_broadcaster = TimerAction(
+        period=5.0,
+        actions=[
+            Node(
+                package='controller_manager',
+                executable='spawner',
+                arguments=['joint_state_broadcaster'],
+                output='screen'
+            )
+        ]
     )
     
-    load_quadruped_controller = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
-             'quadruped_controller'],
-        output='screen'
+    load_quadruped_controller = TimerAction(
+        period=7.0,
+        actions=[
+            Node(
+                package='controller_manager',
+                executable='spawner',
+                arguments=['quadruped_controller'],
+                output='screen'
+            )
+        ]
     )
     
-    # Charger les contrôleurs après le spawn
     return LaunchDescription([
         gui_arg,
         gazebo,
         robot_state_publisher,
         spawn_entity,
-        RegisterEventHandler(
-            event_handler=OnProcessExit(
-                target_action=spawn_entity,
-                on_exit=[load_joint_state_broadcaster],
-            )
-        ),
-        RegisterEventHandler(
-            event_handler=OnProcessExit(
-                target_action=load_joint_state_broadcaster,
-                on_exit=[load_quadruped_controller],
-            )
-        ),
+        load_joint_state_broadcaster,
+        load_quadruped_controller,
     ])
