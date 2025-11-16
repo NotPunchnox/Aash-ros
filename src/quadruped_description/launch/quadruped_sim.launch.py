@@ -1,7 +1,8 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, ExecuteProcess
+from launch.actions import IncludeLaunchDescription, ExecuteProcess, RegisterEventHandler
+from launch.event_handlers import OnProcessStart
 from launch.substitutions import Command, PathJoinSubstitution, LaunchConfiguration
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
@@ -10,8 +11,6 @@ from launch_ros.parameter_descriptions import ParameterValue
 def generate_launch_description():
     package_description = "quadruped_description"
     urdf_file = 'robot.urdf'
-
-    os.system("killall -9 gzserver gzclient 2>/dev/null; sleep 1; echo \"Gazebo arrêté\"")
 
     # URDF
     robot_desc_path = PathJoinSubstitution([
@@ -54,17 +53,33 @@ def generate_launch_description():
         output='screen'
     )
 
-    # Spawners pour controllers
+    # Spawners avec dépendances (attends que controller_manager démarre)
     load_joint_state_broadcaster = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'inactive', 'joint_state_broadcaster'],
-        output='screen'
-    )
-    load_quadruped_controller = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'quadruped_controller'],
+        cmd=['ros2', 'run', 'controller_manager', 'spawner', '--controller-manager', '/controller_manager', 'joint_state_broadcaster'],
         output='screen'
     )
 
-    # RViz (ton config existant)
+    load_quadruped_controller = ExecuteProcess(
+        cmd=['ros2', 'run', 'controller_manager', 'spawner', '--controller-manager', '/controller_manager', 'quadruped_controller'],
+        output='screen'
+    )
+
+    # Event handlers pour séquencer
+    delayed_joint_state_broadcaster = RegisterEventHandler(
+        event_handler=OnProcessStart(
+            target_action=controller_manager,
+            on_start=[load_joint_state_broadcaster]
+        )
+    )
+
+    delayed_quadruped_controller = RegisterEventHandler(
+        event_handler=OnProcessStart(
+            target_action=controller_manager,
+            on_start=[load_quadruped_controller]
+        )
+    )
+
+    # RViz
     rviz_config_path = os.path.join(get_package_share_directory(package_description), "rviz", 'quadruped.rviz')
     rviz_node = Node(
         package='rviz2',
@@ -80,7 +95,7 @@ def generate_launch_description():
         robot_state_publisher_node,
         spawn_entity,
         controller_manager,
-        load_joint_state_broadcaster,
-        load_quadruped_controller,
+        delayed_joint_state_broadcaster,
+        delayed_quadruped_controller,
         rviz_node
     ])
